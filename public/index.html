@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=utf-8>
+  <meta http-equiv=X-UA-Compatible content="IE=edge">
+  <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+
+  <link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous">
+
+  <link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous">
+
+  <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+
+  <style>
+    body,
+    html {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    pre {
+      margin: 0px;
+    }
+
+    .main-wrapper {
+      padding: 0px 1rem;
+    }
+
+    .hljs {
+      background: #FFFFFF;
+      padding: 0px;
+    }
+
+    .card {
+      border-radius: 1rem;
+    }
+
+    ol.examples li {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+    }
+  </style>
+
+  <title>Parlay API</title>
+</head>
+<body>
+  <div class="main-wrapper">
+    <header>
+      <h1 class="my-4 d-flex align-items-center">
+        <div>Parlay API</div>
+        <div class="ml-auto">
+          <a href="https://github.com/whatl3y/parlayapi" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+      </h1>
+    </header>
+    <div>
+      Get the true odds of a single sports wager (given american odds)
+      or a set of odds assuming they will be placed together in a parlay.
+    </div>
+    <hr class="my-4">
+    <h2>Examples</h2>
+
+    <ol class="examples">
+      <li class="border-bottom">
+        <div>
+          <h5>Single Event (-110 American Odds)</h5>
+          <div class="text-center">
+            <code>GET https://www.parlayapi.com/-110</code>
+          </div>
+          <div class="d-flex justify-content-center">
+            <div class="card">
+              <div class="card-body">
+                <h5><u>JSON Response:</u></h5>
+                <pre>
+                  <code class="json">
+{
+  "american": "-110",
+  "decimal": "1.91",
+  "fractional": "9091/10000",
+  "general_for": "1.91 for 1",
+  "general_to": "0.91 to 1",
+  "odds": "-110",
+  "wager100_totalwin": "190.91",
+  "wager100_win": "90.91"
+}
+                  </code>
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="border-bottom">
+        <div>
+          <h5>2-Team Parlay Example</h5>
+          <div class="text-center">
+            <code>GET https://www.parlayapi.com/-110/-150</code>
+          </div>
+          <div class="d-flex justify-content-center">
+            <div class="card">
+              <div class="card-body">
+                <h5><u>JSON Response:</u></h5>
+                <pre>
+                  <code class="json">
+{
+  "american": "+218",
+  "decimal": "3.18",
+  "fractional": "10909/5000",
+  "general_for": "3.18 for 1",
+  "general_to": "2.18 to 1",
+  "odds": "-110,-150",
+  "wager100_totalwin": "318.18",
+  "wager100_win": "218.18"
+}
+                  </code>
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="border-bottom">
+        <div>
+          <h5>3-Team Parlay Example</h5>
+          <div class="text-center">
+            <code>GET https://www.parlayapi.com/-110/175/-210</code>
+          </div>
+          <div class="d-flex justify-content-center">
+            <div class="card">
+              <div class="card-body">
+                <h5><u>JSON Response:</u></h5>
+                <pre>
+                  <code class="json">
+{
+  "american": "+675",
+  "decimal": "7.75",
+  "fractional": "27/4",
+  "general_for": "7.75 for 1",
+  "general_to": "6.75 to 1",
+  "odds": "-110,175,-210",
+  "wager100_totalwin": "775.00",
+  "wager100_win": "675.00"
+}
+                  </code>
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div>
+          <h5>8-Team Parlay Example</h5>
+          <div class="text-center">
+            <code>GET https://www.parlayapi.com/-110/175/-125/135/-110/-115/-275/190</code>
+          </div>
+          <div class="d-flex justify-content-center">
+            <div class="card">
+              <div class="card-body">
+                <h5><u>JSON Response:</u></h5>
+                <pre>
+                  <code class="json">
+{
+  "american": "+31245",
+  "decimal": "313.45",
+  "fractional": "624893/2000",
+  "general_for": "313.45 for 1",
+  "general_to": "312.45 to 1",
+  "odds": "-110,175,-125,135,-110,-115,-275,190",
+  "wager100_totalwin": "31344.65",
+  "wager100_win": "31244.65"
+}
+                  </code>
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+</body>
+</html>
